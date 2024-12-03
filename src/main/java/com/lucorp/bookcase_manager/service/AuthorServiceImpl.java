@@ -4,6 +4,7 @@ import com.lucorp.bookcase_manager.Repository.AuthorRepository;
 import com.lucorp.bookcase_manager.entity.Author;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,5 +27,10 @@ public class AuthorServiceImpl implements AuthorService{
   @Transactional
   public List<Author> findAll() {
     return authorRepository.findAll();
+  }
+
+  @Transactional
+  public Optional<Author> findByName(String name) {
+    return authorRepository.findByName(name);
   }
 }
