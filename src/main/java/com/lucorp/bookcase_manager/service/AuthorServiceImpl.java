@@ -19,7 +19,13 @@ public class AuthorServiceImpl implements AuthorService{
 
   @Transactional
   public Author save(Author author) {
-    author.setName(author.getName().toUpperCase());
+    final var name = author.getName().toUpperCase();
+
+    if(findByName(name).isPresent()){
+      throw new IllegalArgumentException("Author " + name +  " already exists");
+    }
+
+    author.setName(name);
 
     return authorRepository.save(author);
   }
